@@ -2,12 +2,16 @@ package com.example.carinaemerim.bancodedados.Entity;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Subject {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
 
     @ColumnInfo(name = "saved_date")
@@ -39,6 +43,9 @@ public class Subject {
 
     @ColumnInfo(name="summary")
     private String summary = "Curso sem descrição";
+
+    @Ignore
+    private List<Anotacoes> Subject_anotacoes = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -126,5 +133,13 @@ public class Subject {
 
     public void setSummary(String summary) {
         this.summary = summary;
+    }
+
+    public List<Anotacoes> getSubject_anotacoes() {
+        return Subject_anotacoes;
+    }
+
+    public void setSubject_anotacoes(List<Anotacoes> subject_anotacoes) {
+        Subject_anotacoes = subject_anotacoes;
     }
 }
